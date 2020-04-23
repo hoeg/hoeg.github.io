@@ -33,7 +33,9 @@ body {
   padding: 0;
   margin: 0;
   
-  background-image: url('../assets/background.jpg') center center no-repeat;
+  background-image: url('../assets/background.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
     
   letter-spacing: 0.01em;
   line-height: 1.6;
