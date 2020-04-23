@@ -12,7 +12,7 @@ description:  A Software and Security Engineer writing about cloud, IaC, cyber s
 baseurl: "/"
 url: "https://hoeg.github.io"
 twitter_username: h033g
-github_username:  hoeg
+github_username: hoeg
 
 # Build settings
 markdown: kramdown
