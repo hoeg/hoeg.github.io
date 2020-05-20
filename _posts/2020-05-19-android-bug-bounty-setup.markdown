@@ -1,0 +1,4 @@
+- Install Genymotion (https://www.genymotion.com/fun-zone/)
+- Setup android device with api version 9.0 and bridge network
+- Install Ghidra (https://ghidra-sre.org/)
+- Visual studio code decompiler plugin (https://marketplace.visualstudio.com/items?itemName=tintinweb.vscode-decompiler)
