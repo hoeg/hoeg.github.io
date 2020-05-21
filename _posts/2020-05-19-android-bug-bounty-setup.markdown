@@ -16,9 +16,13 @@ Prepare proxy
 
 Install Burp Cert
 - Go to your browser and set burp as proxy. goto http://burp
-- Download certificate by pressing the button in the right upper corner to get cacert.der
+- Download certificate by pressing the button in the right upper corner to get cacert.der, rename to cacert.cer
 - Set proxy for genymotion to 127.0.0.1:8080
 - Locate genymation adb tool
-- adb push cacert.der /sdcard/Download/
+- adb push cacert.cer /sdcard/Download/ (adb is located @ /Applications/Genymotion.app/Contents/MacOS/tools on my Mac)
+- Settings -> Encryption & credentials -> install from SD card
+- Pick cacert.cer and install it with the name burp
+
+Now we have burp set up and can intercept traffic from the phone. However many apps are using certificate pinning to make it harder for us to do this. That is, the application will make sure that if any other certificate than their own are used in the communication, e.g. the burb certificate, the application will refuse to accept the connection. There are multiple ways to circumvent this. We will be using a simple 
 
 Certificate pinning
