@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title:  "CircleCI and Docker Hub rate limiting - where are my secrets?"
