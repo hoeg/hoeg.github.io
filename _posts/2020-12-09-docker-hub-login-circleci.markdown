@@ -40,13 +40,13 @@ Now we are left with the overprivileged user. How do we handle this? Docker Hub 
 
 As shown there are different ways of handling this login procedure, which one you choose depends on how you want to manage your secrets.
 
-3rd-party secrets manager
+## 3rd-party secrets manager
 
 Centralised secrets management makes it easier to manage the lifecycle and access to your secrets. One such tool is Hashicorp Vault (https://www.vaultproject.io/). Vault has a powerful plugin architecture that makes it possible for us to write our own secrets engine that will create a Docker Hub access token and revoke this again after we are done using this, we call these dynamic secrets since they are not hardcoded but fully managed by Vault.
 
 Using dynamic secrets shortens the time an adversary can be able to use this secret if it is leaked, and we ensure that a job on CircleCI will always have to ask for credentials each time it needs it.
 
-Limitations in CircleCI
+## Limitations in CircleCI
 
 Unfortunately it is not possible to retrieve secrets from Vault that can be used to log into DockerHub before pulling the image for a Docker executor on CircleCI cloud solution. Until that is possible we have to store the access token In the environment for our jobs. For machine executors and remote docker executors we will be able to retrieve the secrets from Vault before we log in to Docker Hub.
 
