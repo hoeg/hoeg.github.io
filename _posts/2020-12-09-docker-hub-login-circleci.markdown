@@ -4,7 +4,7 @@ title:  "CircleCI and Docker Hub rate limiting - where are my secrets?"
 date:   2020-12-09 12:38:00 +0200
 categories: Vault CircleCI CI Docker Credentials
 ---
-As of November 1st 2020 Docker started to roll out their rate limiting on unauthenticated pulls from docker hub. For CircleCI users that means that it is highly advised that we always do authenticated pulls since CircleCI cloud solution uses a set pool of ip addresses for their runners. 
+As of November 1st 2020 Docker started to roll out their [rate limiting on unauthenticated pulls from Docker Hub](https://www.docker.com/increase-rate-limits). For CircleCI users that means that it is highly advised that we always do authenticated pulls since CircleCI cloud solution uses a set pool of ip addresses for their runners. Although CircleCI have made arrangements with Docker to not be ratelimited now this might change in the future and therefore they advice that we authenticate our docker pulls (https://support.circleci.com/hc/en-us/articles/360050623311-Docker-Hub-rate-limiting-FAQ).
 
 Well, easy peasy! Just add our credentials to our executors and Bob’s your uncle. An example:
 {% highlight yaml %}
@@ -20,8 +20,8 @@ executors:
 There are a couple of drawbacks doing it this way:
 
 1. The environment variables must be set for each the CircleCI project
-2. Password authentication to Docker Hub enables the user to do administrative tasks like change password
-3. Changing this password will be quite a large task if it is used for many projects
+1. Password authentication to Docker Hub enables the user to do administrative tasks like change password
+1. Changing this password will be quite a large task if it is used for many projects
 
 Let’s address these drawbacks and try to come up with a solution.
 
@@ -49,7 +49,3 @@ Using dynamic secrets shortens the time an adversary can be able to use this sec
 ## Limitations in CircleCI
 
 Unfortunately it is not possible to retrieve secrets from Vault that can be used to log into DockerHub before pulling the image for a Docker executor on CircleCI cloud solution. Until that is possible we have to store the access token In the environment for our jobs. For machine executors and remote docker executors we will be able to retrieve the secrets from Vault before we log in to Docker Hub.
-
-
-https://www.docker.com/increase-rate-limits
-https://support.circleci.com/hc/en-us/articles/360050623311-Docker-Hub-rate-limiting-FAQ
