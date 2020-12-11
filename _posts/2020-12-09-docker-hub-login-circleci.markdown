@@ -40,11 +40,13 @@ Now we are left with the overprivileged user. How do we handle this? Docker Hub 
 
 As shown there are different ways of handling this login procedure, which one you choose depends on how you want to manage your secrets.
 
-## 3rd-party secrets manager
+## 3rd-party secrets- and permission manager
 
 Centralised secrets management makes it easier to manage the lifecycle and access to your secrets. One such tool is Hashicorp Vault (https://www.vaultproject.io/). Vault has a powerful plugin architecture that makes it possible for us to write our own secrets engine that will create a Docker Hub access token and revoke this again after we are done using this, we call these dynamic secrets since they are not hardcoded but fully managed by Vault.
 
 Using dynamic secrets shortens the time an adversary can be able to use this secret if it is leaked, and we ensure that a job on CircleCI will always have to ask for credentials each time it needs it.
+
+At this time it is not possible to granualte the permissions to the access tokens issued by Docker Hub. I would be nice if we could issue an access token that only had e.g. permissions pull a fixed set of images or limit the token to work on a single repository. A possible route to support this feature is by using [Open Policy Agent for Docker authorization](https://www.openpolicyagent.org/docs/latest/docker-authorization/). Combining OPA with dynamic secrets from Vault would be perfect to limit the scope of an access token and locking down the usage of these.
 
 ## Limitations in CircleCI
 
