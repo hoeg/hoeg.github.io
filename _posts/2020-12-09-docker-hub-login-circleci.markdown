@@ -42,7 +42,7 @@ As shown there are different ways of handling this login procedure, which one yo
 
 ## 3rd-party secrets- and permission manager
 
-Centralised secrets management makes it easier to manage the lifecycle and access to your secrets. One such tool is Hashicorp Vault (https://www.vaultproject.io/). Vault has a powerful plugin architecture that makes it possible for us to write our own secrets engine that will create a Docker Hub access token and revoke this again after we are done using this, we call these dynamic secrets since they are not hardcoded but fully managed by Vault.
+Centralised secrets management makes it easier to manage the lifecycle and access to your secrets. One such tool is [Hashicorp Vault] (https://www.vaultproject.io/). Vault has a powerful plugin architecture that makes it possible for us to write our own secrets engine that will create a Docker Hub access token and revoke this again after we are done using this, we call these dynamic secrets since they are not hardcoded but fully managed by Vault.
 
 Using dynamic secrets shortens the time an adversary can be able to use this secret if it is leaked, and we ensure that a job on CircleCI will always have to ask for credentials each time it needs it.
 
