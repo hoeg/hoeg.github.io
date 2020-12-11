@@ -4,7 +4,7 @@ title:  "CircleCI and Docker Hub rate limiting - where are my secrets?"
 date:   2020-12-09 12:38:00 +0200
 categories: Vault CircleCI CI Docker Credentials
 ---
-As of November 1st 2020 Docker started to roll out their [rate limiting on unauthenticated pulls from Docker Hub](https://www.docker.com/increase-rate-limits). For CircleCI users that means that it is highly advised that they always do authenticated pulls since CircleCI cloud solution uses a set pool of ip addresses for their runners. 
+As of November 1st 2020 Docker started to roll out their [rate limiting on unauthenticated pulls from Docker Hub](https://www.docker.com/increase-rate-limits). For CircleCI users that means that it is highly advised that they always do authenticated pulls since CircleCI cloud solution uses a set pool of ip addresses for their runners.
 Although CircleCI have made arrangements with Docker to not be ratelimited, this might change in the future and therefore they advice that docker pulls should be [authenticated](https://support.circleci.com/hc/en-us/articles/360050623311-Docker-Hub-rate-limiting-FAQ).
 
 Well, easy peasy! Just add your credentials to your executors and Bob’s your uncle:
@@ -20,9 +20,9 @@ executors:
 
 There are a couple of drawbacks doing it this way:
 
-1. The environment variables must be set for each the CircleCI project
-1. Password authentication to Docker Hub enables the user to do administrative tasks e.g. changing password
-1. In the event of a password leak, changing this password will be quite a large task if it is used for many projects
+- The environment variables must be set for each the CircleCI project
+- Password authentication to Docker Hub enables the user to do administrative tasks e.g. changing password
+- In the event of a password leak, changing this password will be quite a large task if it is used for many projects
 
 Let’s address these drawbacks and try to come up with a solution.
 
