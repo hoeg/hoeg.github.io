@@ -21,9 +21,9 @@ executors:
 
 There are a couple of drawbacks doing it this way:
 
-1. The environment variables must be set for each the CircleCI project
-1. Password authentication to Docker Hub enables the user to do administrative tasks e.g. changing password
-1. In the event of a password leak, changing this password will be quite a large task if it is used for many projects
+- The environment variables must be set for each the CircleCI project
+- Password authentication to Docker Hub enables the user to do administrative tasks e.g. changing password
+- In the event of a password leak, changing this password will be quite a large task if it is used for many projects
 
 Let’s address these drawbacks and try to come up with a solution.
 
