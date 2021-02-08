@@ -39,13 +39,13 @@ username     hoeg
 
 The DockerHub plugin is now installed and configured. We now need to allow Vault users to issue access tokens. We can do this by adding a policy to our user: 
 
-```
+{% highlight hcl %}
 path "dockerhub/token/hoeg/*" {
     capabilities = [
         "write"
     ]
 }
-```
+{% endhighlight %}
 
 or if we only want to be able to access a the `my-organization` namespace we add the following policy:
 
