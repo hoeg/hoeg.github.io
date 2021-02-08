@@ -7,13 +7,15 @@ categories: Vault DockerHub Credentials DevSecOps
 
 Often in CI pipelines we need to authenticate to a docker image repository. Docker Hub is widely used and easily available but using you username and password to authenticate comes with some caveats. Your credentials can be used to administrative activitetes like chaning your password or email on your account. Actions that you would never do as part of your CI. It is also hard to manage your credentials if they are copied around into different build jobs and a leakage of your password in one place results in resetting the password and chaning it everywhere.
 
-# DockerHub access tokens
+## DockerHub access tokens
 
 DockerHub supports [access tokens](https://docs.docker.com/docker-hub/access-tokens/) which fits better into the CI and other integreations. While you can issue an access token for each build job you still have to manage these credentials by copying them and revoking in case of a leaks. Using access tokens provide a lot security upsides compared to using your username and password. But what if we did not have manage the lifecycle of these tokens our selves? We would get the benifites of access tokens without having to do any administrative tasks.
 
-# Vault plugin to the rescue
+## Vault plugin to the rescue
 
-To make this possible I created a [secrets plugin for Hashicorp Vault](https://github.com/hoeg/vault-plugin-secrets-dockerhub). When the plugin has been registered you can configure the it to create temporary access tokens managed by Vault.
+To make this possible I created a [secrets plugin for Hashicorp Vault](https://github.com/hoeg/vault-plugin-secrets-dockerhub). Note that the code is currently just written as a proof of concept, but I hope to clean it up and make it more robust in the future.
+
+When the plugin has been registered you can configure the it to create temporary access tokens managed by Vault.
 
 First we write a configuration:
 
@@ -72,4 +74,8 @@ username           hoeg
 uuid               6d4c51ef-bb1e-45da-898d-f08f55a50c2b
 ```
 
-we see that the token will be revoked after 5 minutes by Vault. Great! By doing this as part of our pipeline we can get fresh credentials when we need them and should they leak we have minimized the window in which they are usable.
+we get the token and see that the token will be revoked after 5 minutes by Vault.
+
+## Closing
+
+Great! By doing this as part of our pipeline we can get fresh credentials when we need them and should they leak we have minimized the window in which they are usable. The plugin is written in about a days time which shows that it is quite easy to go from static secrets to dynaminc using Vaults secrets plugin. I hope that this project will serve as a help for others who might see a need for at plugin for some other usecase as I found the documentation and articles provided by Hashicorp a bit lacking. I will do a writeup about the problems I encountered while writing this plugin at a later time. 
