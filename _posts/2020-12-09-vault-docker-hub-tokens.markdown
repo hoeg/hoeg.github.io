@@ -27,7 +27,7 @@ You can specify multiple namespaces by writing them as a commaseparated list.
 Afterward we can inspect our configuration by calling
 
 ```
-vault read dockerhub/config/hoeg
+$ vault read dockerhub/config/hoeg
 Key          Value
 ---          -----
 namespace    [hoeg my-organization]
