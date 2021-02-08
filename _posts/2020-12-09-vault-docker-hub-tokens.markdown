@@ -49,13 +49,13 @@ path "dockerhub/token/hoeg/*" {
 
 or if we only want to be able to access a the `my-organization` namespace we add the following policy:
 
-```
+{% highlight hcl %}
 path "dockerhub/token/hoeg/my-organization" {
     capabilities = [
         "write"
     ]
 }
-```
+{% endhighlight %}
 
 this illustrates that we can tighten the scope even more using access tokens this way. Unfortunately Docker Hub does not support scoping wrt. usage of the token. I would be really nice if we could ask for read only or push only token. Perhaps that will become available in the future.
 
