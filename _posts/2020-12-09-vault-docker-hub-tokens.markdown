@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "From static to dynamic with Vault + DockerHub"
-date:   2021-07-02 13:33:00 +0200
+date:   2021-02-07 13:33:00 +0200
 categories: Vault DockerHub Credentials DevSecOps
 ---
 
