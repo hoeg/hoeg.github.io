@@ -8,7 +8,7 @@
 # Site settings
 title: hoeg's place
 email: peter.steffensen@gmail.com
-description:  A Software and Security Engineer writing about cloud, IaC, cyber security, hacking, bug bounty and CTF. 
+description:  Security Engineer writing about cloud, IaC, cyber security, hacking, bug bounty and CTF. 
 baseurl: "/"
 url: "https://hoeg.github.io"
 twitter_username: h033g
